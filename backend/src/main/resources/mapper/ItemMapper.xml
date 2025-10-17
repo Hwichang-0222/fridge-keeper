@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fridgekeeper.mapper.ItemMapper">
+
+	<resultMap id="itemMap" type="com.fridgekeeper.domain.Item">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="quantity" column="quantity"/>
+		<result property="category" column="category"/>
+		<result property="expirationDate" column="expiration_date"/>
+	</resultMap>
+
+	<select id="getItems" resultMap="itemMap">
+		SELECT * FROM item
+	</select>
+
+	<select id="getItemById" parameterType="long" resultMap="itemMap">
+		SELECT * FROM item WHERE id = #{id}
+	</select>
+
+	<insert id="insertItem" parameterType="com.fridgekeeper.domain.Item">
+		INSERT INTO item
+		(
+			name, 
+			quantity, 
+			category,
+			expiration_date
+		)
+		VALUES 
+		(
+			#{name}, 
+			#{quantity}, 
+			#{category}, 
+			#{expirationDate}
+		)
+	</insert>
+
+	<update id="updateItem" parameterType="com.fridgekeeper.domain.Item">
+		UPDATE item
+		SET name = #{name},
+			quantity = #{quantity},
+			category = #{category},
+			expiration_date = #{expirationDate}
+		WHERE id = #{id}
+	</update>
+
+	<delete id="deleteItem" parameterType="long">
+		DELETE FROM item WHERE id = #{id}
+	</delete>
+
+</mapper>
