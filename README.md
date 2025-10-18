@@ -19,6 +19,14 @@
 
 > “냉장고 안의 재료를 잊지 않고, 똑똑하게 활용하자!”
 
+| 항목 | 내용 |
+|------|------|
+| **프로젝트명** | Fridge Keeper |
+| **브랜치명** | main |
+| **역할** | 백엔드 API 서버 |
+| **개발 환경** | Spring Boot 3.5.6 / Maven / Java 17 / MyBatis / MySQL |
+| **레포지토리** | [https://github.com/Hwichang-0222/fridge-keeper](https://github.com/Hwichang-0222/fridge-keeper)
+
 ---
 
 ## 🧩 주요 기능
@@ -62,6 +70,51 @@ fridge-keeper/
 ├── .gitignore
 └── .git/
 ```
+
+---
+
+## 💮 주요 설정
+
+### `pom.xml`
+Spring Boot + MyBatis + Swagger 의존성 포함  
+Java 17 기준으로 컴파일 설정 완료
+
+### `application.properties`
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/fridge_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+spring.datasource.username=root
+spring.datasource.password=1111
+mybatis.mapper-locations=classpath:/mapper/**/*.xml
+springdoc.swagger-ui.path=/swagger-ui
+```
+
+---
+
+## 🚀 실행 방법
+
+```bash
+# 1. 의존성 설치
+mvn clean install
+
+# 2. 서버 실행
+mvn spring-boot:run
+```
+
+실행 후 접속:
+- API 문서: [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui)
+- API JSON: [http://localhost:8080/api-docs](http://localhost:8080/api-docs)
+
+---
+
+## 🧠 예외 처리
+`GlobalExceptionHandler`를 통해 REST 전역 오류를 통합 관리합니다.  
+일관된 JSON 포맷으로 응답하며, HTTP 상태 코드와 메시지를 함께 제공합니다.
+
+---
+
+## 🔗 안드로이드 연동
+안드로이드(`master` 브랜치)에서 `Retrofit2`를 이용해 본 서버의 API를 호출합니다.  
+백엔드는 `CORS` 허용 및 `JSON` 응답 구조로 구성되어 있습니다.
 
 ---
 
@@ -125,11 +178,10 @@ fridge-keeper/
 - [🟩] REST API 기본 구조 (Controller / Service / Mapper / Domain)  
 - [🟩] GitHub 연동 및 버전 관리  
 - [🟩] README 및 문서화 완료  
-- [⬜] JUnit5 테스트 환경 구성  
 
 ### 📱 2단계 — 안드로이드 연동 (2025.11 ~ 2025.12)
-- [🟨] Retrofit2 기반 API 연동  
-- [🟨] 물품 등록 / 조회 / 삭제 UI 구성  
+- [🟩] Retrofit2 기반 API 연동  
+- [🟩] 물품 등록 / 조회 / 삭제 UI 구성  
 - [⬜] 유통기한 알림 (로컬 + Firebase Cloud Messaging)  
 - [⬜] 데이터 시각화 (캘린더 뷰, 리스트 뷰)
 
