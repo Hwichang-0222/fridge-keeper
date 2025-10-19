@@ -1,23 +1,11 @@
-![Spring Boot](https://img.shields.io/badge/SpringBoot-3.5.6-brightgreen)
-![Java](https://img.shields.io/badge/Java-17-blue)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-orange)
-![Android](https://img.shields.io/badge/Android-Java-yellowgreen)
+# 🥊 Fridge Keeper Backend (Spring Boot)
 
-
-
-# 🧊 냉장고지킴이 (Fridge Keeper)
-
-**스마트 냉장고 관리 어플리케이션**  
-유통기한 관리, 장보기 추천, 재료 기반 메뉴 추천을 제공하는 통합 냉장고 관리 시스템  
+Spring Boot과 MyBatis 기반의 냉장고 식재료 관리 서버 프로젝트입니다.  
+REST API를 통해 안드로이드 앱(`master` 브랜치)과 연동되어 작동합니다.
 
 ---
 
-## 🧭 프로젝트 개요
-
-냉장고지킴이는 냉장고 내부 물품을 효율적으로 관리하고,  
-유통기한을 자동으로 알림받을 수 있는 **스마트 냉장고 보조 앱**입니다.  
-
-> “냉장고 안의 재료를 잊지 않고, 똑똑하게 활용하자!”
+## 📁 프로젝트 개요
 
 | 항목 | 내용 |
 |------|------|
@@ -25,50 +13,55 @@
 | **브랜치명** | main |
 | **역할** | 백엔드 API 서버 |
 | **개발 환경** | Spring Boot 3.5.6 / Maven / Java 17 / MyBatis / MySQL |
-| **레포지토리** | [https://github.com/Hwichang-0222/fridge-keeper](https://github.com/Hwichang-0222/fridge-keeper)
-
----
-
-## 🧩 주요 기능
-
-| 기능 | 설명 |
-|------|------|
-| 🧾 **물품 등록** | 바코드 스캔 또는 직접 입력으로 품목 추가 |
-| ⏰ **유통기한 알림** | 만료 1~2일 전 자동 알림 전송 |
-| 🧺 **장보기 추천** | 자주 구매하는 품목 기반 자동 추천 |
-| 🍳 **메뉴 제안** | 현재 냉장고 재료로 가능한 레시피 추천 |
-| 👨‍👩‍👧 **공유 기능** | 가족 구성원과 냉장고 데이터 실시간 공유 |
+| **레포지토리** | [https://github.com/Hwichang-0222/fridge-keeper](https://github.com/Hwichang-0222/fridge-keeper) |
 
 ---
 
 ## ⚙️ 기술 스택
 
-| 구분 | 기술 |
-|------|------|
-| **Backend** | Spring Boot 3.5.6, Java 17 |
-| **Database** | MySQL 8.0, MyBatis |
-| **Frontend (예정)** | Android (Java 기반) |
-| **Build Tool** | Maven |
-| **Server** | Spring Boot 내장 Tomcat |
-| **Tools** | Eclipse 2024-12, GitHub Desktop |
-| **Version Control** | GitHub |
+- **Backend:** Spring Boot, MyBatis, JPA, Lombok  
+- **Database:** MySQL  
+- **API 문서:** Swagger(OpenAPI 3)  
+- **빌드 도구:** Maven  
+- **서버:** Spring Boot 내장 Tomcat  
+- **IDE:** Eclipse 2024-12  
 
 ---
 
-## 🗂️ 프로젝트 구조
+## 🥉 주요 기능
 
-```bash
-fridge-keeper/
-├── backend/                   # Spring Boot 백엔드
-│   ├── src/
-│   │   ├── main/java/com/fridgekeeper/...
-│   │   ├── main/resources/
-│   │   └── test/java/
-│   ├── pom.xml
-│   └── application.properties
-├── README.md                  # 프로젝트 소개 문서
-├── .gitignore
-└── .git/
+| 기능 | 설명 |
+|------|------|
+| **식재료 등록** | POST `/items` - 식재료 정보 등록 |
+| **식재료 조회** | GET `/items` - 전체 목록 조회 |
+| **상세 조회** | GET `/items/{id}` - 단일 항목 조회 |
+| **수정 및 삭제** | PUT/DELETE `/items/{id}` |
+| **uc608외 처리** | `GlobalExceptionHandler`에서 통합 처리 |
+| **API 문서** | Swagger UI를 통해 자동 문서화 (`/swagger-ui`) |
+
+---
+
+## 🗂️ 디렉토리 구조
+
+```
+backend/
+ ┗📁 controller
+ ┃ ┗ ItemController.java
+ ┗📁 service
+ ┃ ┛ ItemService.java
+ ┃ ┗ ItemServiceImpl.java
+ ┗📁 domain
+ ┃ ┗ Item.java
+ ┗📁 mapper
+ ┃ ┗ ItemMapper.java
+ ┃ ┗ ItemMapper.xml
+ ┗📁 config
+ ┃ ┗ OpenApiConfig.java
+ ┗📁 exception
+ ┃ ┗ GlobalExceptionHandler.java
+ ┗📁 resources
+ ┃ ┗ application.properties
+ ┗ pom.xml
 ```
 
 ---
@@ -118,121 +111,7 @@ mvn spring-boot:run
 
 ---
 
-## 💾 ERD 설계 (예정)
+## 👨‍💻 개발자 정보
+**홍휘창 (Hwichang-0222)**  
+📍 [GitHub](https://github.com/Hwichang-0222)
 
-| 테이블명 | 설명 |
-|-----------|------|
-| `item` | 냉장고 물품 테이블 (이름, 수량, 유통기한, 카테고리 등) |
-| `user` | 사용자 계정 정보 (공유용) |
-| `shopping_list` | 장보기 추천 품목 저장 |
-| `notification` | 유통기한 알림 스케줄 |
-
----
-
-## 🧠 개발 목표 (확장 버전)
-
-냉장고지킴이는 단순한 물품 관리 앱이 아니라,  
-**생활 패턴에 맞춰 냉장고를 자동 관리하는 스마트 시스템**을 목표로 합니다.
-
----
-
-### 🎯 주요 목표
-
-- 🧾 **유통기한 관리 자동화**  
-  - 물품 등록 시 바코드 스캔 또는 직접 입력을 통해 자동 분류 및 알림 설정  
-  - 만료 임박(1~2일 전) 시 푸시 알림 발송, 만료 시 “폐기 예정” 상태 자동 표시  
-
-- 🧺 **장보기 추천 시스템**  
-  - 자주 구매하는 품목의 데이터 패턴을 분석해 자동 장보기 리스트 생성  
-  - 재고 부족 품목을 자동 감지 후 ‘추천 항목’으로 분류  
-
-- 🍳 **메뉴 추천 기능**  
-  - 냉장고에 있는 재료를 기반으로 조리 가능한 레시피 추천  
-  - 선택된 메뉴의 재료는 자동 차감되어 재고와 연동  
-
-- 👨‍👩‍👧 **가족 공유 기능**  
-  - 여러 기기에서 하나의 냉장고 데이터를 공유  
-  - 계정별 권한 설정(보기 전용 / 관리자) 가능  
-
-- 🔔 **스마트 알림 시스템**  
-  - 유통기한, 재고 부족, 문 열림 감지(IoT 연동 예정) 등 상황별 자동 알림  
-
-- ⚙️ **IoT 및 하드웨어 연동 (확장 목표)**  
-  - 라벨 프린터 연동 → 물품 등록 시 라벨 자동 출력  
-  - 아두이노/라즈베리파이 기반 냉장고 문 열림 감지  
-  - 향후 SmartThings 또는 ThinQ API 연동 검토  
-
-- 💡 **사용성 향상**  
-  - 등록–관리–소비 흐름이 자연스럽게 이어지도록 설계  
-  - 불필요한 입력 최소화 (자동완성, OCR, 추천 등)
-
----
-
-## 🧩 프로젝트 진행 로드맵
-
-> 진행 상태: 🟩 완료 / 🟨 진행 중 / ⬜ 계획 중  
-
-### 🧱 1단계 — 백엔드 구축 (2025.10 ~ 2025.11)
-- [🟩] Spring Boot 3.5.6 프로젝트 초기 설정  
-- [🟩] MySQL + MyBatis 연동  
-- [🟩] REST API 기본 구조 (Controller / Service / Mapper / Domain)  
-- [🟩] GitHub 연동 및 버전 관리  
-- [🟩] README 및 문서화 완료  
-
-### 📱 2단계 — 안드로이드 연동 (2025.11 ~ 2025.12)
-- [🟩] Retrofit2 기반 API 연동  
-- [🟩] 물품 등록 / 조회 / 삭제 UI 구성  
-- [⬜] 유통기한 알림 (로컬 + Firebase Cloud Messaging)  
-- [⬜] 데이터 시각화 (캘린더 뷰, 리스트 뷰)
-
-### 🧠 3단계 — 기능 고도화 (2026.01 이후)
-- [⬜] 장보기 추천 알고리즘  
-- [⬜] 메뉴 추천 기능 (레시피 API 연동)  
-- [⬜] 가족 계정 공유  
-- [⬜] Spring Scheduler 기반 자동 알림  
-- [⬜] IoT 센서 및 라벨 프린터 연동  
-
-### ☁️ 4단계 — 배포 및 상용화
-- [⬜] AWS / GCP 클라우드 서버 배포  
-- [⬜] 프리미엄 기능 분리 및 유료화 검토  
-- [⬜] 보안 및 데이터 암호화 강화  
-
----
-
-## 📆 개발 일정 요약 (예정)
-
-| 단계 | 기간 | 주요 목표 |
-|------|------|------------|
-| **1단계** | 2025.10 ~ 2025.11 | 백엔드(Spring Boot) 구축 |
-| **2단계** | 2025.11 ~ 2025.12 | 안드로이드 클라이언트 연동 |
-| **3단계** | 2026.01 이후 | AI 추천 및 IoT 기능 확장 |
-
----
-
-## 📬 개발자 정보
-
-| 항목 | 내용 |
-|------|------|
-| **이름** | 홍휘창 |
-| **GitHub** | [Hwichang-0222](https://github.com/Hwichang-0222) |
-| **프로젝트명** | 냉장고지킴이 (Fridge Keeper) |
-
----
-
-> 💡 *이 프로젝트는 개인 학습 및 포트폴리오 목적으로 제작 중입니다.*
-
----
-
-💬 **한 줄 요약:**  
-> “냉장고지킴이는 냉장고 속 재료를 효율적으로 관리해  
-> 버려지는 음식을 줄이고, 스마트한 소비를 돕는 개인 프로젝트입니다.”
-
-
-
-
-🧾 License
-  MIT License (예정)
-
-💬 한 줄 요약:
-  “냉장고지킴이는 냉장고 속 재료를 효율적으로 관리해
-  버려지는 음식 없이 스마트한 소비를 돕는 개인 프로젝트입니다.”
