@@ -12,18 +12,18 @@ import retrofit2.http.Body;
 
 public interface ItemApi {
 
-    @GET("items")
+    @GET("api/items")
     Call<List<Item>> getItems();
 
-    @GET("items/{id}")
+    @GET("api/items/{id}")
     Call<Item> getItem(@Path("id") long id);
 
-    @POST("items")
+    @POST("api/items")
     Call<Void> addItem(@Body Item item);
 
-    @PUT("items/{id}")
+    @PUT("api/items/{id}")
     Call<Void> updateItem(@Path("id") long id, @Body Item item);
 
-    @DELETE("items/{id}")
+    @DELETE("api/items/{id}")
     Call<Void> deleteItem(@Path("id") long id);
 }

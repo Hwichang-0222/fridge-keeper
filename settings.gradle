@@ -1,23 +1,20 @@
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        google()
         mavenCentral()
         gradlePluginPortal()
+        maven { url 'https://jitpack.io' }   // ✅ 외부 라이브러리 인식용
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }   // ✅ 반드시 포함
     }
 }
 
-rootProject.name = "FridgeKeeper"
-include ':app'
+rootProject.name = "fridge-keeper"
+include(":app")
