@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="org.fridgekeeper.mapper.UserMapper">
+    <select id="selectAllUsers" resultType="org.fridgekeeper.dto.UserDTO">
+        <![CDATA[
+        SELECT * FROM user
+        ]]>
+    </select>
+    <select id="selectUserById" parameterType="long" resultType="org.fridgekeeper.dto.UserDTO">
+        <![CDATA[
+        SELECT * FROM user WHERE user_id = #{userId}
+        ]]>
+    </select>
+    <insert id="insertUser" parameterType="org.fridgekeeper.dto.UserDTO">
+        <![CDATA[
+        INSERT INTO user (email, password, nickname, created_at)
+        VALUES (#{email}, #{password}, #{nickname}, #{createdAt})
+        ]]>
+    </insert>
+    <update id="updateUser" parameterType="org.fridgekeeper.dto.UserDTO">
+        <![CDATA[
+        UPDATE user SET email = #{email}, password = #{password}, nickname = #{nickname} WHERE user_id = #{userId}
+        ]]>
+    </update>
+    <delete id="deleteUser" parameterType="long">
+        <![CDATA[
+        DELETE FROM user WHERE user_id = #{userId}
+        ]]>
+    </delete>
+</mapper>

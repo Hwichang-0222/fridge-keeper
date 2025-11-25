@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="org.fridgekeeper.mapper.FridgeMapper">
+    <select id="selectAllFridges" resultType="org.fridgekeeper.dto.FridgeDTO">
+        <![CDATA[
+        SELECT * FROM fridge
+        ]]>
+    </select>
+    <select id="selectFridgeById" parameterType="long" resultType="org.fridgekeeper.dto.FridgeDTO">
+        <![CDATA[
+        SELECT * FROM fridge WHERE fridge_id = #{fridgeId}
+        ]]>
+    </select>
+    <insert id="insertFridge" parameterType="org.fridgekeeper.dto.FridgeDTO">
+        <![CDATA[
+        INSERT INTO fridge (name, created_at)
+        VALUES (#{name}, #{createdAt})
+        ]]>
+    </insert>
+    <update id="updateFridge" parameterType="org.fridgekeeper.dto.FridgeDTO">
+        <![CDATA[
+        UPDATE fridge SET name = #{name} WHERE fridge_id = #{fridgeId}
+        ]]>
+    </update>
+    <delete id="deleteFridge" parameterType="long">
+        <![CDATA[
+        DELETE FROM fridge WHERE fridge_id = #{fridgeId}
+        ]]>
+    </delete>
+</mapper>

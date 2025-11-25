@@ -11,4 +11,5 @@ public class ItemDTO {
 	private String expirationDate;
 	private String memo;
 	private String createdAt;
+	private String barcode;
 }

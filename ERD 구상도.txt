@@ -1,0 +1,31 @@
+ERD 및 테이블 관계 설명
+User
+
+사용자 정보 (user_id, email, password, nickname 등)
+
+Fridge
+
+냉장고 정보 (fridge_id, name 등)
+
+Fridge_User_Role
+
+냉장고와 사용자, 롤(OWNER/MEMBER) 연결
+M:N 관계 (한 사용자가 여러 냉장고, 한 냉장고에 여러 사용자)
+
+Category
+
+기본/커스텀 카테고리 (category_id, name, color, created_by_user_id)
+created_by_user_id가 null이면 기본, 값 있으면 커스텀
+
+Item
+
+냉장고 내 식품/아이템 정보 (item_id, fridge_id, category_id, name, expiration_date 등)
+
+
+관계 요약
+User 1:N Fridge_User_Role
+Fridge 1:N Fridge_User_Role
+Fridge_User_Role: fridge_id, user_id, role
+Fridge 1:N Item
+Category 1:N Item
+User 1:N Category (커스텀)

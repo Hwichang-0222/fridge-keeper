@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="org.fridgekeeper.mapper.FridgeUserRoleMapper">
+    <select id="selectRolesByFridgeId" parameterType="long" resultType="org.fridgekeeper.dto.FridgeUserRoleDTO">
+        <![CDATA[
+        SELECT * FROM fridge_user_role WHERE fridge_id = #{fridgeId}
+        ]]>
+    </select>
+    <select id="selectRolesByUserId" parameterType="long" resultType="org.fridgekeeper.dto.FridgeUserRoleDTO">
+        <![CDATA[
+        SELECT * FROM fridge_user_role WHERE user_id = #{userId}
+        ]]>
+    </select>
+    <insert id="insertFridgeUserRole" parameterType="org.fridgekeeper.dto.FridgeUserRoleDTO">
+        <![CDATA[
+        INSERT INTO fridge_user_role (fridge_id, user_id, role, joined_at)
+        VALUES (#{fridgeId}, #{userId}, #{role}, #{joinedAt})
+        ]]>
+    </insert>
+    <update id="updateFridgeUserRole" parameterType="org.fridgekeeper.dto.FridgeUserRoleDTO">
+        <![CDATA[
+        UPDATE fridge_user_role SET role = #{role} WHERE fridge_id = #{fridgeId} AND user_id = #{userId}
+        ]]>
+    </update>
+    <delete id="deleteFridgeUserRole">
+        <![CDATA[
+        DELETE FROM fridge_user_role WHERE fridge_id = #{fridgeId} AND user_id = #{userId}
+        ]]>
+    </delete>
+</mapper>

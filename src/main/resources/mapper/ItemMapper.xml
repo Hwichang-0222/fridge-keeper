@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.fridgekeeper.mapper.ItemMapper">
-
-	<resultMap id="itemMap" type="com.fridgekeeper.domain.Item">
-		<id property="id" column="id"/>
-		<result property="name" column="name"/>
-		<result property="quantity" column="quantity"/>
-		<result property="category" column="category"/>
-		<result property="expirationDate" column="expiration_date"/>
-	</resultMap>
-
-	<select id="getItems" resultMap="itemMap">
+<mapper namespace="org.fridgekeeper.mapper.ItemMapper">
+	<select id="selectAllItems" resultType="org.fridgekeeper.dto.ItemDTO">
+		<![CDATA[
 		SELECT * FROM item
+		]]>
 	</select>
 
-	<select id="getItemById" parameterType="long" resultMap="itemMap">
-		SELECT * FROM item WHERE id = #{id}
+	<select id="selectItemById" parameterType="long" resultType="org.fridgekeeper.dto.ItemDTO">
+		<![CDATA[
+		SELECT * FROM item WHERE item_id = #{itemId}
+		]]>
 	</select>
 
-	<insert id="insertItem" parameterType="com.fridgekeeper.domain.Item">
-		INSERT INTO item
-		(
-			name, 
-			quantity, 
-			category,
-			expiration_date
-		)
-		VALUES 
-		(
-			#{name}, 
-			#{quantity}, 
-			#{category}, 
-			#{expirationDate}
-		)
+	<select id="selectItemByBarcode" parameterType="string" resultType="org.fridgekeeper.dto.ItemDTO">
+		<![CDATA[
+		SELECT * FROM item WHERE barcode = #{barcode}
+		]]>
+	</select>
+
+	<insert id="insertItem" parameterType="org.fridgekeeper.dto.ItemDTO">
+		<![CDATA[
+		INSERT INTO item (fridge_id, category_id, name, expiration_date, memo, created_at, barcode)
+		VALUES (#{fridgeId}, #{categoryId}, #{name}, #{expirationDate}, #{memo}, #{createdAt}, #{barcode})
+		]]>
 	</insert>
 
-	<update id="updateItem" parameterType="com.fridgekeeper.domain.Item">
+	<update id="updateItem" parameterType="org.fridgekeeper.dto.ItemDTO">
+		<![CDATA[
 		UPDATE item
-		SET name = #{name},
-			quantity = #{quantity},
-			category = #{category},
-			expiration_date = #{expirationDate}
-		WHERE id = #{id}
+		SET fridge_id = #{fridgeId},
+			category_id = #{categoryId},
+			name = #{name},
+			expiration_date = #{expirationDate},
+			memo = #{memo},
+			created_at = #{createdAt},
+			barcode = #{barcode}
+		WHERE item_id = #{itemId}
+		]]>
+	</update>
+
+	<update id="updateItemBarcode">
+		<![CDATA[
+		UPDATE item SET barcode = #{barcode} WHERE item_id = #{itemId}
+		]]>
 	</update>
 
 	<delete id="deleteItem" parameterType="long">
-		DELETE FROM item WHERE id = #{id}
+		<![CDATA[
+		DELETE FROM item WHERE item_id = #{itemId}
+		]]>
 	</delete>
-
 </mapper>

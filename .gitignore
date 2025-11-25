@@ -26,3 +26,7 @@ target/
 # Other
 logs/
 *.log
+
+# Git commit convention file 제외
+.github/COMMIT_CONVENTION.md
+.github/copliot-instructions.md

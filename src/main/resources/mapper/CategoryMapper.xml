@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="org.fridgekeeper.mapper.CategoryMapper">
+    <select id="selectAllCategories" resultType="org.fridgekeeper.dto.CategoryDTO">
+        <![CDATA[
+        SELECT * FROM category
+        ]]>
+    </select>
+    <select id="selectCategoryById" parameterType="long" resultType="org.fridgekeeper.dto.CategoryDTO">
+        <![CDATA[
+        SELECT * FROM category WHERE category_id = #{categoryId}
+        ]]>
+    </select>
+    <insert id="insertCategory" parameterType="org.fridgekeeper.dto.CategoryDTO">
+        <![CDATA[
+        INSERT INTO category (name, color, created_by_user_id)
+        VALUES (#{name}, #{color}, #{createdByUserId})
+        ]]>
+    </insert>
+    <update id="updateCategory" parameterType="org.fridgekeeper.dto.CategoryDTO">
+        <![CDATA[
+        UPDATE category SET name = #{name}, color = #{color} WHERE category_id = #{categoryId}
+        ]]>
+    </update>
+    <delete id="deleteCategory" parameterType="long">
+        <![CDATA[
+        DELETE FROM category WHERE category_id = #{categoryId}
+        ]]>
+    </delete>
+</mapper>
