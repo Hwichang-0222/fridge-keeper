@@ -1,12 +1,10 @@
-package org.fridgekeeper.mapper;
+package org.fridgekeeper.service;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.fridgekeeper.dto.FridgeDTO;
 import java.util.List;
 
-@Mapper
-public interface FridgeMapper {
-
+public interface FridgeService {
+	
 	// 모든 냉장고 목록 조회
 	List<FridgeDTO> selectAllFridges();
 
@@ -14,11 +12,11 @@ public interface FridgeMapper {
 	FridgeDTO selectFridgeById(Long fridgeId);
 
 	// 냉장고 추가
-	int insertFridge(FridgeDTO fridge);
+	void insertFridge(FridgeDTO fridgeDTO);
 
 	// 냉장고 정보 수정
-	int updateFridge(FridgeDTO fridge);
+	void updateFridge(FridgeDTO fridgeDTO);
 
 	// 냉장고 삭제
-	int deleteFridge(Long fridgeId);
+	void deleteFridge(Long fridgeId);
 }

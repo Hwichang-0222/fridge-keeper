@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="org.fridgekeeper.mapper.FridgeMapper">
+
+    <!-- 모든 냉장고 목록 조회 -->
     <select id="selectAllFridges" resultType="org.fridgekeeper.dto.FridgeDTO">
         <![CDATA[
         SELECT * FROM fridge
         ]]>
     </select>
+
+    <!-- 냉장고 단건 조회 -->
     <select id="selectFridgeById" parameterType="long" resultType="org.fridgekeeper.dto.FridgeDTO">
         <![CDATA[
         SELECT * FROM fridge WHERE fridge_id = #{fridgeId}
         ]]>
     </select>
+
+    <!-- 냉장고 추가 -->
     <insert id="insertFridge" parameterType="org.fridgekeeper.dto.FridgeDTO">
         <![CDATA[
         INSERT INTO fridge (name, created_at)
         VALUES (#{name}, #{createdAt})
         ]]>
     </insert>
+
+    <!-- 냉장고 정보 수정 -->
     <update id="updateFridge" parameterType="org.fridgekeeper.dto.FridgeDTO">
         <![CDATA[
         UPDATE fridge SET name = #{name} WHERE fridge_id = #{fridgeId}
         ]]>
     </update>
+	
+    <!-- 냉장고 삭제 -->
     <delete id="deleteFridge" parameterType="long">
         <![CDATA[
         DELETE FROM fridge WHERE fridge_id = #{fridgeId}
         ]]>
     </delete>
+
 </mapper>

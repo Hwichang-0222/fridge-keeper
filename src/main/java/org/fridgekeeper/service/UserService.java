@@ -1,11 +1,9 @@
-package org.fridgekeeper.mapper;
+package org.fridgekeeper.service;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.fridgekeeper.dto.UserDTO;
 import java.util.List;
 
-@Mapper
-public interface UserMapper {
+public interface UserService {
 
 	// 모든 사용자 목록 조회
 	List<UserDTO> selectAllUsers();
@@ -14,11 +12,11 @@ public interface UserMapper {
 	UserDTO selectUserById(Long userId);
 
 	// 사용자 추가
-	int insertUser(UserDTO user);
+	void insertUser(UserDTO userDTO);
 
 	// 사용자 정보 수정
-	int updateUser(UserDTO user);
+	void updateUser(UserDTO userDTO);
 
 	// 사용자 삭제
-	int deleteUser(Long userId);
+	void deleteUser(Long userId);
 }

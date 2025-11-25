@@ -27,6 +27,12 @@ target/
 logs/
 *.log
 
+# Spring Boot 환경별 및 민감 정보 프로퍼티 파일
+application.properties
+
+# 샘플/예시 파일은 커밋 가능
+!application.properties.example
+
 # Git commit convention file 제외
 .github/COMMIT_CONVENTION.md
 .github/copliot-instructions.md

@@ -1,12 +1,10 @@
-package org.fridgekeeper.mapper;
+package org.fridgekeeper.service;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.fridgekeeper.dto.CategoryDTO;
 import java.util.List;
 
-@Mapper
-public interface CategoryMapper {
-	
+public interface CategoryService {
+
 	// 모든 카테고리 목록 조회
 	List<CategoryDTO> selectAllCategories();
 
@@ -14,11 +12,11 @@ public interface CategoryMapper {
 	CategoryDTO selectCategoryById(Long categoryId);
 
 	// 카테고리 추가
-	int insertCategory(CategoryDTO category);
+	void insertCategory(CategoryDTO categoryDTO);
 
 	// 카테고리 정보 수정
-	int updateCategory(CategoryDTO category);
+	void updateCategory(CategoryDTO categoryDTO);
 
 	// 카테고리 삭제
-	int deleteCategory(Long categoryId);
+	void deleteCategory(Long categoryId);
 }

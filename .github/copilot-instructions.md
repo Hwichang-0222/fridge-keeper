@@ -77,6 +77,34 @@ WHERE uc.user_id = ?;
 -   DTO/도메인/매퍼/서비스/컨트롤러 간 역할 분리
 -   사용자 구분, 냉장고 공유, 권한 관리 등 멀티 플랫폼 대응
 
+
+## 📝 Commit Message Convention
+
+-   Start with a tag in square brackets: `[Update]`, `[Add]`, `[Fix]`, `[Remove]`, `[Refactor]`, etc.
+-   Write the message in English.
+-   Keep it short and to the point (one line).
+-   Commit frequently and describe each change clearly.
+
+### Examples
+
+-   [Update] Change DTO package path
+-   [Add] Implement fridge user role logic
+-   [Fix] Item deletion bug
+-   [Remove] Legacy controller files
+-   [Refactor] Clean up service code
+
+### Tags
+
+-   [Add]: New feature or file
+-   [Update]: Change or improvement
+-   [Fix]: Bug fix
+-   [Remove]: Delete file or code
+-   [Refactor]: Code refactoring
+
+---
+
+Follow this rule for all commits to keep history clear and consistent.
+
 ## 🗂️ 참고 파일
 
 -   `README.md`: 전체 구조 및 실행법
@@ -88,5 +116,5 @@ WHERE uc.user_id = ?;
 
 ---
 
-> 이 문서는 Fridge Keeper 백엔드 코드베이스에서 AI 에이전트가 즉시 생산적으로 작업할 수 있도록 핵심 구조, 워크플로우, DB/권한/로그인/관계 규칙을 요약합니다. 추가 정보가 필요하면 `README.md`, `DDL.sql`, 각 디렉토리의 대표 파일을 참고하세요.
+> 이 문서는 Fridge Keeper 백엔드 코드베이스에서 AI 에이전트가 즉시 생산적으로 작업할 수 있도록 핵심 구조, 워크플로우, DB/권한/로그인/관계 규칙 및 커밋 메시지 규칙을 요약합니다. 추가 정보가 필요하면 `README.md`, `DDL.sql`, 각 디렉토리의 대표 파일을 참고하세요.
 ```

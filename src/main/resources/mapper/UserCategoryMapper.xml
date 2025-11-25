@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="org.fridgekeeper.mapper.UserCategoryMapper">
+
+    <!-- 사용자별 카테고리 목록 조회 -->
     <select id="selectUserCategories" parameterType="long" resultType="org.fridgekeeper.dto.UserCategoryDTO">
         <![CDATA[
         SELECT * FROM user_category WHERE user_id = #{userId}
         ]]>
     </select>
+	
+    <!-- 사용자별 카테고리 연결(추가) -->
     <insert id="insertUserCategory" parameterType="org.fridgekeeper.dto.UserCategoryDTO">
         <![CDATA[
         INSERT INTO user_category (user_id, category_id, color, name)
         VALUES (#{userId}, #{categoryId}, #{color}, #{name})
         ]]>
     </insert>
+
+    <!-- 사용자별 카테고리 정보 수정 -->
     <update id="updateUserCategory" parameterType="org.fridgekeeper.dto.UserCategoryDTO">
         <![CDATA[
         UPDATE user_category SET color = #{color}, name = #{name} WHERE user_id = #{userId} AND category_id = #{categoryId}
         ]]>
     </update>
+	
+    <!-- 사용자별 카테고리 연결 해제(삭제) -->
     <delete id="deleteUserCategory">
         <![CDATA[
         DELETE FROM user_category WHERE user_id = #{userId} AND category_id = #{categoryId}
         ]]>
     </delete>
+
 </mapper>

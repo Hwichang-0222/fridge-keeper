@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="org.fridgekeeper.mapper.FridgeUserRoleMapper">
+
+    <!-- 냉장고별 사용자 권한 목록 조회 -->
     <select id="selectRolesByFridgeId" parameterType="long" resultType="org.fridgekeeper.dto.FridgeUserRoleDTO">
         <![CDATA[
         SELECT * FROM fridge_user_role WHERE fridge_id = #{fridgeId}
         ]]>
     </select>
+
+    <!-- 사용자별 냉장고 권한 목록 조회 -->
     <select id="selectRolesByUserId" parameterType="long" resultType="org.fridgekeeper.dto.FridgeUserRoleDTO">
         <![CDATA[
         SELECT * FROM fridge_user_role WHERE user_id = #{userId}
         ]]>
     </select>
+
+    <!-- 냉장고-사용자 권한 추가 -->
     <insert id="insertFridgeUserRole" parameterType="org.fridgekeeper.dto.FridgeUserRoleDTO">
         <![CDATA[
         INSERT INTO fridge_user_role (fridge_id, user_id, role, joined_at)
         VALUES (#{fridgeId}, #{userId}, #{role}, #{joinedAt})
         ]]>
     </insert>
+
+    <!-- 냉장고-사용자 권한 수정 -->
     <update id="updateFridgeUserRole" parameterType="org.fridgekeeper.dto.FridgeUserRoleDTO">
         <![CDATA[
         UPDATE fridge_user_role SET role = #{role} WHERE fridge_id = #{fridgeId} AND user_id = #{userId}
         ]]>
     </update>
+	
+    <!-- 냉장고-사용자 권한 삭제 -->
     <delete id="deleteFridgeUserRole">
         <![CDATA[
         DELETE FROM fridge_user_role WHERE fridge_id = #{fridgeId} AND user_id = #{userId}
         ]]>
     </delete>
+
 </mapper>

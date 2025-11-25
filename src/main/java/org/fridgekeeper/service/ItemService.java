@@ -1,11 +1,9 @@
-package org.fridgekeeper.mapper;
+package org.fridgekeeper.service;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.fridgekeeper.dto.ItemDTO;
 import java.util.List;
 
-@Mapper
-public interface ItemMapper {
+public interface ItemService {
 
 	// 모든 아이템 목록 조회
 	List<ItemDTO> selectAllItems();
@@ -17,14 +15,14 @@ public interface ItemMapper {
 	ItemDTO selectItemByBarcode(String barcode);
 
 	// 아이템 추가
-	int insertItem(ItemDTO item);
+	void insertItem(ItemDTO itemDTO);
 
 	// 아이템 정보 수정
-	int updateItem(ItemDTO item);
+	void updateItem(ItemDTO itemDTO);
 
 	// 아이템 바코드만 수정
-	int updateItemBarcode(Long itemId, String barcode);
+	void updateItemBarcode(Long itemId, String barcode);
 
 	// 아이템 삭제
-	int deleteItem(Long itemId);
+	void deleteItem(Long itemId);
 }
