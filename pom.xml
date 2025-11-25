@@ -31,6 +31,23 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
+    <!-- Spring Security -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <!-- OAuth2 Client (소셜 로그인 등) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-client</artifactId>
+    </dependency>
+
+    <!-- Jackson Datatype (날짜/시간 변환) -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
     <!-- JPA (Hibernate) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>

@@ -1,4 +1,4 @@
-package com.fridgekeeper.exception;
+ package org.fridgekeeper.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
