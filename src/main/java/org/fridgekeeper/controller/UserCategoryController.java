@@ -8,6 +8,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user-categories")
 public class UserCategoryController {
+	
 	private final UserCategoryService userCategoryService;
 
 	public UserCategoryController(UserCategoryService userCategoryService) {

@@ -16,6 +16,7 @@ import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+	
 	private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 	// 리소스가 없을 때 404 반환
